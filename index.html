@@ -4,152 +4,413 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday, Sayang! 💗</title>
+  <meta name="theme-color" content="#fff0f5">
+  <title>For My Favorite Person 💗</title>
 
   <style>
+    :root {
+      --pink: #f28bad;
+      --pink-dark: #d85d85;
+      --pink-light: #fff0f5;
+      --cream: #fffdf8;
+      --text: #674653;
+      --muted: #a37c8b;
+      --border: #ffd5e2;
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: "Trebuchet MS", sans-serif;
-      background: #fff0f4;
-      color: #5b3944;
+      background:
+        radial-gradient(circle at 10% 10%, #ffe0eb 0, transparent 25%),
+        radial-gradient(circle at 90% 40%, #ffe8f0 0, transparent 25%),
+        var(--pink-light);
+      color: var(--text);
+      font-family: "Trebuchet MS", Arial, sans-serif;
       text-align: center;
       overflow-x: hidden;
     }
 
+    button {
+      font: inherit;
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #bd4d78;
+      outline-offset: 4px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
     .container {
-      min-height: 100vh;
-      padding: 35px 18px;
+      width: min(100% - 32px, 850px);
+      margin: auto;
+    }
+
+    .hero {
+      min-height: 100svh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 35px 0;
+    }
+
+    .hero-box {
+      width: 100%;
+      max-width: 530px;
+      padding: 32px 20px;
+      background: #ffffffbd;
+      border: 2px solid white;
+      border-radius: 30px;
+      box-shadow: 0 15px 40px #eaa8bf30;
+    }
+
+    .eyebrow {
+      color: var(--pink-dark);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
     }
 
     h1 {
-      color: #ef6b91;
-      font-size: 2rem;
-    }
-
-    p {
-      line-height: 1.8;
-    }
-
-    .subtitle {
-      color: #99717e;
-    }
-
-    /* Amplop */
-    .envelope {
-      margin: 30px auto;
-      width: 210px;
-      height: 140px;
-      background: #ffb7cb;
-      border: 3px solid white;
-      border-radius: 12px;
-      box-shadow: 0 7px 15px #e8a3b755;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 65px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .envelope:hover {
-      transform: scale(1.06) rotate(-3deg);
-    }
-
-    button {
-      border: none;
-      border-radius: 25px;
-      background: #f47c9d;
-      color: white;
-      padding: 13px 24px;
-      font-size: 15px;
-      cursor: pointer;
-      box-shadow: 0 4px 0 #d95d80;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      background: #eb668b;
-    }
-
-    /* Kartu ucapan */
-    .card {
-      display: none;
-      width: 100%;
-      max-width: 430px;
-      padding: 28px 22px;
-      background: #fffdf7;
-      border: 2px solid #ffd4df;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px #e5a8bd55;
-      animation: muncul 0.7s ease;
-    }
-
-    .card h2 {
-      color: #ed6d91;
-    }
-
-    .emoji {
-      font-size: 55px;
+      color: var(--pink-dark);
+      font-size: clamp(2rem, 7vw, 3.3rem);
+      line-height: 1.2;
       margin: 15px 0;
     }
 
-    .surprise {
+    h2 {
+      color: var(--pink-dark);
+      font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    h3 {
+      color: var(--pink-dark);
+    }
+
+    p {
+      line-height: 1.85;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .big-emoji {
+      font-size: clamp(55px, 15vw, 85px);
+      margin: 15px 0;
+      animation: bob 2.5s ease-in-out infinite;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 30px;
+      padding: 13px 22px;
+      margin: 6px;
+      color: white;
+      background: var(--pink);
+      box-shadow: 0 5px 0 #dc6b91;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: var(--pink-dark);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 0 #dc6b91;
+    }
+
+    .btn.secondary {
+      color: var(--pink-dark);
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 0 #f7d6e1;
+    }
+
+    .envelope {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      width: 180px;
+      height: 135px;
+      border: 3px solid white;
+      border-radius: 20px;
+      background: #ffc5d7;
+      font-size: 65px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px #e8a3b755;
+      animation: bob 2s ease-in-out infinite;
+    }
+
+    .section {
+      padding: 65px 0;
+      scroll-margin-top: 15px;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: -5px;
+    }
+
+    .paper {
+      background: var(--cream);
+      border: 2px solid var(--border);
+      border-radius: 25px;
+      padding: 25px;
+      box-shadow: 0 12px 30px #d98da51c;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .polaroid {
+      padding: 10px 10px 18px;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 7px 18px #a86c8020;
+      transform: rotate(-2deg);
+    }
+
+    .polaroid:nth-child(even) {
+      transform: rotate(2deg);
+    }
+
+    .photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      aspect-ratio: 4 / 4.5;
+      overflow: hidden;
+      background: linear-gradient(145deg, #ffe0eb, #fff4d9);
+      color: #b96b89;
+      font-size: 40px;
+      border-radius: 3px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo img:not([src]),
+    .photo img[src=""] {
       display: none;
-      margin-top: 25px;
+    }
+
+    .caption {
+      margin: 12px 0 0;
+      font-family: Georgia, serif;
+      font-size: 14px;
+    }
+
+    .quiz-question {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 12px;
+      max-width: 430px;
+      margin: 20px auto;
+    }
+
+    .quiz-option {
+      border: 2px solid var(--border);
+      background: white;
+      color: var(--text);
+      padding: 14px;
+      border-radius: 17px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .quiz-option:hover {
+      background: #fff0f5;
+      transform: scale(1.02);
+    }
+
+    .quiz-option:disabled {
+      cursor: default;
+      opacity: .8;
+    }
+
+    .feedback {
+      min-height: 55px;
+      font-weight: bold;
+      color: var(--pink-dark);
+    }
+
+    .gift-box {
+      font-size: 95px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      animation: bob 2s ease-in-out infinite;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.1);
+    }
+
+    .gift-message {
+      background: #ffe5ee;
+      border: 1px dashed #f2a0bc;
       padding: 20px;
-      background: #ffe4ec;
-      border-radius: 15px;
-      animation: muncul 0.7s ease;
+      border-radius: 20px;
+      animation: appear .7s ease;
+    }
+
+    .letter {
+      text-align: left;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 2;
+      font-size: 16px;
+      min-height: 100px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .letter-sign {
+      color: var(--pink-dark);
+      text-align: right;
+      font-weight: bold;
+      margin-top: 20px;
     }
 
     .footer {
-      margin-top: 25px;
-      color: #c78398;
+      padding: 35px 15px;
+      color: var(--muted);
       font-size: 13px;
     }
 
-    .heart {
+    .floating-heart {
       position: fixed;
-      bottom: -30px;
+      left: var(--x);
+      bottom: -35px;
+      z-index: 99;
       pointer-events: none;
-      animation: terbang 4s linear forwards;
-      z-index: 10;
+      animation: float-up var(--duration) linear forwards;
     }
 
-    @keyframes muncul {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
+    .confetti {
+      position: fixed;
+      top: -20px;
+      left: var(--x);
+      z-index: 99;
+      pointer-events: none;
+      animation: confetti-fall var(--duration) linear forwards;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 10px;
+      background: #fff0f5eF;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ffd5e2;
+    }
+
+    .top-nav a {
+      display: inline-block;
+      color: var(--pink-dark);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 5px 9px;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-9px) rotate(2deg); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float-up {
       to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes terbang {
-      to {
-        transform: translateY(-110vh) rotate(25deg);
+        transform: translateY(-115vh) rotate(35deg);
         opacity: 0;
       }
     }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.7rem;
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(110vh) rotate(700deg);
+        opacity: 0;
+      }
+    }
+
+    @media (min-width: 650px) {
+      .gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
+      .hero-box {
+        padding: 45px 35px;
+      }
+    }
+
+    @media (max-width: 380px) {
       .container {
-        padding: 25px 16px;
+        width: min(100% - 22px, 850px);
+      }
+
+      .paper {
+        padding: 17px;
+      }
+
+      .gallery {
+        gap: 10px;
+      }
+
+      .caption {
+        font-size: 12px;
+      }
+
+      .top-nav a {
+        margin: 5px;
+        font-size: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
@@ -157,125 +418,492 @@
 
 <body>
 
-  <section class="container" id="opening">
-    <div class="emoji">🎀</div>
-    <h1>Hi, Sayang! 💗</h1>
-    <p class="subtitle">
-      Aku punya sesuatu buat kamu...
-    </p>
+  <!-- HALAMAN PEMBUKA -->
+  <section class="hero" id="opening">
+    <div class="container">
+      <div class="hero-box">
+        <div class="eyebrow">a little surprise for you</div>
+        <div class="big-emoji">🎀</div>
 
-    <div class="envelope" onclick="bukaSurat()">
-      💌
-    </div>
-
-    <button onclick="bukaSurat()">
-      Buka suratnya ♡
-    </button>
-
-    <p class="footer">A little surprise, just for you 🧸</p>
-  </section>
-
-  <section class="container" id="ucapan" style="display:none">
-    <div class="card" style="display:block">
-      <div class="emoji">🎂💗🎉</div>
-
-      <h2>Happy Birthday, Sayang!</h2>
-
-      <p>
-        Yeayyy, hari ini hari spesial kamu! 🥳
-      </p>
-
-      <p>
-        Selamat ulang tahun, orang favorit aku.
-        Semoga di umur yang baru ini kamu selalu
-        sehat, bahagia, dan semua hal baik
-        datang ke hidup kamu.
-      </p>
-
-      <p>
-        Makasih ya udah hadir di hidup aku.
-        Semoga aku bisa terus nemenin kamu,
-        di hari yang bahagia maupun hari yang
-        nggak mudah.
-      </p>
-
-      <p>
-        Jangan lupa bahagia terus yaa.
-        You deserve all the good things in life! 💗
-      </p>
-
-      <h3>Love you always! 🧸💕</h3>
-
-      <button onclick="bukaHadiah()">
-        Ada satu lagi nih... 🎁
-      </button>
-
-      <div class="surprise" id="hadiah">
-        <div class="emoji">🧸🎁💝</div>
-
-        <h2>Surpriseee!</h2>
-
-        <p>
-          Kalau aku boleh minta satu hal,
-          aku mau kita punya lebih banyak
-          cerita indah bareng-bareng.
+        <h1>Hi, Sayang! 💗</h1>
+        <p class="muted">
+          Hari ini ada sesuatu yang spesial buat manusia favorit aku...
         </p>
 
-        <p>
-          Semoga senyum kamu selalu ada,
-          dan semoga aku masih jadi salah
-          satu alasan di balik senyum itu. 🥹
-        </p>
+        <button class="envelope" onclick="openWebsite()"
+          aria-label="Buka amplop">💌</button>
 
-        <h3>You're my favorite person! 💗</h3>
-        <p>Peluk jauh buat kamu! 🤗</p>
+        <p>Surat kecil dengan cinta yang besar 🧸</p>
+        <button class="btn" onclick="openWebsite()">
+          Buka suratnya ♡
+        </button>
       </div>
     </div>
-
-    <p class="footer">Made with love, just for you ♡</p>
   </section>
 
+  <!-- ISI WEBSITE -->
+  <main id="main-content" class="hidden">
+
+    <nav class="top-nav" aria-label="Navigasi halaman">
+      <a href="#memories">📸 Memories</a>
+      <a href="#quiz">💕 Mini Quiz</a>
+      <a href="#gift">🎁 Surprise</a>
+      <a href="#letter">💌 Surat</a>
+    </nav>
+
+    <!-- SAPAAN -->
+    <section class="section">
+      <div class="container">
+        <div class="big-emoji">🎂💗🧸</div>
+        <div class="eyebrow">today is all about you</div>
+        <h1>Happy Birthday, Sayang!</h1>
+
+        <p>
+          Selamat ulang tahun untuk orang paling spesial di hidup aku.
+          Hari ini, semua hal manis di dunia rasanya masih kalah sama
+          senyum kamu. 🥹💕
+        </p>
+
+        <p class="muted">
+          Aku punya beberapa kejutan kecil. Yuk, lihat semuanya!
+        </p>
+
+        <button class="btn" onclick="goTo('memories')">
+          Mulai petualangan kita ✨
+        </button>
+      </div>
+    </section>
+
+    <!-- GALERI KENANGAN -->
+    <section class="section" id="memories">
+      <div class="container">
+        <div class="section-heading">
+          <div class="big-emoji">📸</div>
+          <h2>Our Little Memories</h2>
+          <p>Beberapa momen kecil yang punya tempat besar di hati aku.</p>
+        </div>
+
+        <div class="gallery">
+
+          <!-- GANTI FOTO DENGAN FOTO KALIAN -->
+          <article class="polaroid">
+            <div class="photo">
+              <img src="foto1.jpg" alt="Kenangan pertama kita"
+                onerror="this.style.display='none'">
+              <span>💗</span>
+            </div>
+            <p class="caption">A moment to remember ♡</p>
+          </article>
+
+          <article class="polaroid">
+            <div class="photo">
+              <img src="foto2.jpg" alt="Kenangan manis kita"
+                onerror="this.style.display='none'">
+              <span>🌷</span>
+            </div>
+            <p class="caption">My favorite person 🧸</p>
+          </article>
+
+          <article class="polaroid">
+            <div class="photo">
+              <img src="foto3.jpg" alt="Foto kita bersama"
+                onerror="this.style.display='none'">
+              <span>🎀</span>
+            </div>
+            <p class="caption">More memories to come ✨</p>
+          </article>
+
+        </div>
+
+        <p class="muted">
+          Setiap momen bareng kamu punya cerita tersendiri. 💕
+        </p>
+      </div>
+    </section>
+
+    <!-- MINI QUIZ -->
+    <section class="section" id="quiz">
+      <div class="container">
+        <div class="section-heading">
+          <div class="big-emoji">💘</div>
+          <h2>How Well Do You Know Us?</h2>
+          <p>Jawab pertanyaan kecil ini, yuk! Jangan curang yaa 😝</p>
+        </div>
+
+        <div class="paper">
+          <div id="quiz-progress" class="eyebrow">Question 1 of 3</div>
+          <div id="quiz-question" class="quiz-question"></div>
+          <div id="quiz-options" class="quiz-options"></div>
+          <div id="quiz-feedback" class="feedback"
+            aria-live="polite"></div>
+
+          <button id="next-question" class="btn hidden"
+            onclick="nextQuestion()">Lanjut 💗</button>
+
+          <div id="quiz-result" class="hidden">
+            <h3>Quiz selesai! 🎉</h3>
+            <p id="quiz-score"></p>
+            <button class="btn secondary" onclick="restartQuiz()">
+              Main lagi ♡
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HADIAH RAHASIA -->
+    <section class="section" id="gift">
+      <div class="container">
+        <div class="section-heading">
+          <div class="big-emoji">🎁</div>
+          <h2>A Tiny Gift For You</h2>
+          <p>Katanya ada hadiah yang harus dibuka dulu nih...</p>
+        </div>
+
+        <div class="paper">
+          <button id="gift-button" class="gift-box"
+            onclick="openGift()" aria-label="Buka hadiah">
+            🎁
+          </button>
+
+          <p id="gift-hint">Coba klik kotaknya! Jangan malu-malu 😚</p>
+
+          <div id="gift-message" class="gift-message hidden">
+            <div class="big-emoji">🧸💝</div>
+            <h3>Surpriseee!</h3>
+
+            <p>
+              Kalau aku boleh minta satu hal, aku mau kita punya
+              lebih banyak cerita indah bareng-bareng.
+            </p>
+
+            <p>
+              Semoga aku bisa terus menemani kamu, mendukung mimpi kamu,
+              dan menjadi tempat pulang saat dunia terasa melelahkan.
+            </p>
+
+            <h3>You're my favorite person! 💗</h3>
+            <p>Hadiah terbesarku adalah bisa mengenal kamu. 🤗</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SURAT CINTA -->
+    <section class="section" id="letter">
+      <div class="container">
+        <div class="section-heading">
+          <div class="big-emoji">💌</div>
+          <h2>A Letter For You</h2>
+          <p>Ada sesuatu yang ingin aku bilang dari hati.</p>
+        </div>
+
+        <div class="paper">
+          <h3>Dear, Sayangku ♡</h3>
+
+          <div id="letter-text" class="letter"></div>
+
+          <div id="letter-sign" class="letter-sign hidden">
+            With all my love,<br>
+            Orang yang selalu sayang kamu 💗
+          </div>
+
+          <button id="letter-button" class="btn"
+            onclick="startLetter()">
+            Buka surat cintanya 💌
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section class="section">
+      <div class="container">
+        <div class="big-emoji">🌷💗✨</div>
+        <h2>One More Thing...</h2>
+        <p>
+          Semoga umur baru ini membawa lebih banyak kebahagiaan,
+          kesehatan, keberanian, dan mimpi-mimpi yang terwujud.
+        </p>
+
+        <p>
+          Jangan pernah lupa kalau kamu berharga, kamu pantas bahagia,
+          dan kamu layak mendapatkan banyak hal baik.
+        </p>
+
+        <h3>Happy Birthday, My Favorite Human! 🧸</h3>
+        <p>Love you always and always. ♡</p>
+
+        <button class="btn" onclick="celebrate()">
+          Kirim peluk virtual 🤗
+        </button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Made with ♡, specially for you 🎀<br>
+      A little website, a whole lot of love.
+    </footer>
+
+  </main>
+
   <script>
-    function bukaSurat() {
-      document.getElementById("opening").style.display = "none";
-      document.getElementById("ucapan").style.display = "flex";
+    // ==========================================
+    // MINI QUIZ
+    // EDIT PERTANYAAN DAN JAWABAN DI BAGIAN INI
+    // correct = indeks jawaban yang benar, mulai dari 0
+    // ==========================================
 
-      buatHati();
-    }
-
-    function bukaHadiah() {
-      const hadiah = document.getElementById("hadiah");
-
-      hadiah.style.display = "block";
-      hadiah.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-
-      buatHati();
-    }
-
-    function buatHati() {
-      const simbol = ["💗", "💕", "💖", "🎀", "✨"];
-
-      for (let i = 0; i < 18; i++) {
-        const hati = document.createElement("span");
-
-        hati.className = "heart";
-        hati.textContent =
-          simbol[Math.floor(Math.random() * simbol.length)];
-
-        hati.style.left = Math.random() * 100 + "vw";
-        hati.style.fontSize =
-          (15 + Math.random() * 18) + "px";
-
-        hati.style.animationDuration =
-          (3 + Math.random() * 3) + "s";
-
-        document.body.appendChild(hati);
-
-        setTimeout(() => hati.remove(), 6500);
+    const quizData = [
+      {
+        question: "Apa yang paling aku suka dari kamu? 🥹",
+        options: [
+          "Senyum kamu 💗",
+          "Cara kamu ketawa 😆",
+          "Semua tentang kamu 🧸"
+        ],
+        correct: 2,
+        feedback: "Yap! Semua tentang kamu itu spesial buat aku! 💕"
+      },
+      {
+        question: "Kalau kita punya waktu berdua, pilih mana? 🌷",
+        options: [
+          "Quality time bareng kamu",
+          "Main HP masing-masing 😝",
+          "Sibuk sendiri-sendiri"
+        ],
+        correct: 0,
+        feedback: "Asal bareng kamu, hal sederhana pun jadi istimewa. 💗"
+      },
+      {
+        question: "Apa harapan aku buat hubungan kita? 💌",
+        options: [
+          "Makin sering berantem",
+          "Saling mendukung dan tumbuh bersama",
+          "Lupa ulang tahun satu sama lain"
+        ],
+        correct: 1,
+        feedback: "Betul! Semoga kita selalu belajar dan tumbuh bersama. 🥹"
       }
+    ];
+
+    let questionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    function openWebsite() {
+      document.getElementById("opening").classList.add("hidden");
+      document.getElementById("main-content").classList.remove("hidden");
+
+      renderQuestion();
+      makeHearts(18);
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goTo(id) {
+      document.getElementById(id).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    function renderQuestion() {
+      const q = quizData[questionIndex];
+
+      answered = false;
+      document.getElementById("quiz-progress").textContent =
+        `Question ${questionIndex + 1} of ${quizData.length}`;
+
+      document.getElementById("quiz-question").textContent = q.question;
+      document.getElementById("quiz-feedback").textContent = "";
+      document.getElementById("next-question").classList.add("hidden");
+      document.getElementById("quiz-result").classList.add("hidden");
+      document.getElementById("quiz-options").classList.remove("hidden");
+
+      const options = document.getElementById("quiz-options");
+      options.innerHTML = "";
+
+      q.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.className = "quiz-option";
+        button.textContent = option;
+        button.onclick = () => answerQuestion(index);
+        options.appendChild(button);
+      });
+    }
+
+    function answerQuestion(index) {
+      if (answered) return;
+      answered = true;
+
+      const q = quizData[questionIndex];
+      const buttons = document.querySelectorAll(".quiz-option");
+
+      buttons.forEach(button => button.disabled = true);
+
+      if (index === q.correct) {
+        score++;
+        document.getElementById("quiz-feedback").textContent =
+          "Benar! " + q.feedback;
+        makeHearts(5);
+      } else {
+        document.getElementById("quiz-feedback").textContent =
+          "Hehe, jawaban paling tepat: " + q.options[q.correct] +
+          " 💗 Yang penting kita saling sayang!";
+      }
+
+      const next = document.getElementById("next-question");
+      next.textContent = questionIndex === quizData.length - 1
+        ? "Lihat hasilnya 🎉"
+        : "Lanjut 💗";
+      next.classList.remove("hidden");
+    }
+
+    function nextQuestion() {
+      if (questionIndex < quizData.length - 1) {
+        questionIndex++;
+        renderQuestion();
+      } else {
+        document.getElementById("quiz-options").classList.add("hidden");
+        document.getElementById("quiz-question").textContent =
+          "Makasih sudah main! 🥰";
+        document.getElementById("quiz-progress").textContent =
+          "Quiz completed 💗";
+        document.getElementById("quiz-feedback").textContent = "";
+        document.getElementById("next-question").classList.add("hidden");
+
+        document.getElementById("quiz-score").textContent =
+          `Kamu menjawab ${score} dari ${quizData.length} pertanyaan dengan benar! ` +
+          "Yang paling penting, semoga kita terus membuat kenangan indah. 💕";
+
+        document.getElementById("quiz-result").classList.remove("hidden");
+        makeHearts(12);
+      }
+    }
+
+    function restartQuiz() {
+      questionIndex = 0;
+      score = 0;
+      renderQuestion();
+    }
+
+    // ==========================================
+    // HADIAH RAHASIA
+    // EDIT PESAN HADIAH DI DALAM HTML gift-message
+    // ==========================================
+
+    function openGift() {
+      const message = document.getElementById("gift-message");
+
+      if (!message.classList.contains("hidden")) return;
+
+      message.classList.remove("hidden");
+      document.getElementById("gift-button").textContent = "💝";
+      document.getElementById("gift-hint").textContent =
+        "Yayyy, hadiah kamu sudah terbuka! 🥹";
+
+      makeHearts(25);
+      confetti(45);
+    }
+
+    // ==========================================
+    // SURAT CINTA DENGAN EFEK MENGETIK
+    // EDIT TEKS DI VARIABEL loveLetter
+    // ==========================================
+
+    const loveLetter = `Selamat ulang tahun, sayangku! 💗
+
+Makasih sudah hadir di hidup aku dan menjadi salah satu bagian terindah dari cerita aku.
+
+Di umur kamu yang baru ini, aku berharap kamu selalu diberi kesehatan, kebahagiaan, dan kekuatan untuk mengejar semua mimpi kamu.
+
+Aku tahu hidup nggak selalu mudah. Akan ada hari ketika kamu capek, sedih, atau merasa semuanya terlalu berat. Di hari-hari seperti itu, semoga kamu ingat kalau kamu nggak harus selalu kuat sendirian.
+
+Aku mungkin belum bisa memberikan semua hal yang kamu inginkan, tetapi aku ingin terus belajar menjadi seseorang yang bisa mendukung kamu, mendengarkan cerita kamu, dan ikut merayakan setiap pencapaian kecil maupun besar kamu.
+
+Semoga kita punya lebih banyak waktu untuk tertawa, mencoba hal baru, dan membuat kenangan yang suatu hari nanti bisa kita ceritakan sambil tersenyum.
+
+Sekali lagi, selamat ulang tahun, orang favorit aku. Jangan lupa bahagia, jangan lupa sayang sama diri sendiri, dan jangan pernah meragukan betapa berharganya kamu.
+
+Aku sayang kamu, hari ini, besok, dan semoga di banyak hari yang akan datang. 🧸💗`;
+
+    let letterStarted = false;
+
+    function startLetter() {
+      if (letterStarted) return;
+      letterStarted = true;
+
+      const textElement = document.getElementById("letter-text");
+      const button = document.getElementById("letter-button");
+      const sign = document.getElementById("letter-sign");
+
+      button.disabled = true;
+      button.textContent = "Lagi menulis surat... 💌";
+
+      let i = 0;
+
+      function typeNext() {
+        if (i < loveLetter.length) {
+          textElement.textContent += loveLetter.charAt(i);
+          i++;
+
+          // Kecepatan mengetik
+          setTimeout(typeNext, 24);
+        } else {
+          sign.classList.remove("hidden");
+          button.textContent = "Surat sudah terbuka 💗";
+          button.disabled = false;
+          makeHearts(15);
+        }
+      }
+
+      typeNext();
+    }
+
+    // ==========================================
+    // EFEK HATI DAN CONFETTI
+    // ==========================================
+
+    function makeHearts(count = 12) {
+      const symbols = ["💗", "💕", "💖", "🎀", "✨"];
+
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement("span");
+        heart.className = "floating-heart";
+        heart.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        heart.style.setProperty("--x", Math.random() * 100 + "vw");
+        heart.style.setProperty("--duration", (3 + Math.random() * 3) + "s");
+        heart.style.fontSize = (15 + Math.random() * 18) + "px";
+
+        document.body.appendChild(heart);
+        heart.addEventListener("animationend", () => heart.remove());
+      }
+    }
+
+    function confetti(count = 35) {
+      const symbols = ["💗", "✨", "🎀", "💕", "🌸"];
+
+      for (let i = 0; i < count; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti";
+        piece.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        piece.style.setProperty("--x", Math.random() * 100 + "vw");
+        piece.style.setProperty("--duration", (2 + Math.random() * 3) + "s");
+        piece.style.fontSize = (12 + Math.random() * 16) + "px";
+
+        document.body.appendChild(piece);
+        piece.addEventListener("animationend", () => piece.remove());
+      }
+    }
+
+    function celebrate() {
+      makeHearts(35);
+      confetti(55);
     }
   </script>
 
