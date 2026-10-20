@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff0f5">
+<title>Happy Birthday, Sayang! 💗</title>
+<style>
+*{box-sizing:border-box}
+:root{--pink:#f27b9d;--pink-dark:#d9577d;--cream:#fffdf8;--ink:#684653}
+body{margin:0;background:linear-gradient(135deg,#fff0f5,#ffe0eb);font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);text-align:center;min-height:100vh;overflow-x:hidden}
+main{width:min(100% - 28px,520px);margin:auto;padding:32px 0 24px}
+.panel{min-height:calc(100vh - 56px);display:flex;flex-direction:column;justify-content:center;align-items:center}
+h1{color:var(--pink-dark);font-size:clamp(1.8rem,7vw,2.6rem);margin:10px 0}
+p{line-height:1.8}
+.sub{color:#a77788;margin-top:0}
+.envelope{width:210px;height:145px;margin:24px auto;background:#ffb6cb;border:4px solid white;border-radius:15px;box-shadow:0 10px 24px #d8789850;display:grid;place-items:center;font-size:66px;cursor:pointer;transition:transform .25s}
+.envelope:hover{transform:rotate(-4deg) scale(1.04)}
+button{border:0;border-radius:999px;padding:13px 22px;background:var(--pink);color:white;font-size:1rem;font-weight:bold;box-shadow:0 4px 0 #d65d80;cursor:pointer;transition:transform .2s}
+button:hover{transform:translateY(-2px)}
+.card{width:100%;background:var(--cream);border:2px solid #ffd2df;border-radius:24px;padding:26px 22px;box-shadow:0 12px 28px #d878982b;animation:pop .55s ease}
+.emoji{font-size:clamp(2.5rem,12vw,4rem);margin:8px 0}
+.card h2{color:var(--pink-dark);font-size:1.65rem}
+.card p{font-size:1rem}
+.hidden{display:none!important}
+.note{margin-top:22px;padding:18px;background:#ffe5ed;border-radius:18px;animation:pop .5s ease}
+footer{font-size:.85rem;color:#b47a8e;margin:22px 0 0}
+.heart{position:fixed;bottom:-35px;pointer-events:none;animation:float 4s linear forwards;z-index:5}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <section class="panel" id="opening">
+    <div class="emoji">🎀</div>
+    <h1>Hai, sayang! 💗</h1>
+    <p class="sub">Aku punya sesuatu yang kecil buat kamu...</p>
+    <div class="envelope" role="button" tabindex="0" aria-label="Buka surat" onclick="openLetter()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLetter()}">💌</div>
+    <button onclick="openLetter()">Buka suratnya ♡</button>
+    <footer>A little surprise, just for you 🧸</footer>
+  </section>
+
+  <section class="panel hidden" id="message">
+    <article class="card">
+      <div class="emoji">🎂💗🎉</div>
+      <h2>Happy Birthday, Sayang!</h2>
+      <p>Yeayyy, hari ini hari spesial kamu! 🥳</p>
+      <p>Selamat ulang tahun, orang favorit aku. Semoga di umur yang baru ini kamu selalu sehat, bahagia, dan semua hal baik datang ke hidup kamu.</p>
+      <p>Makasih ya udah hadir di hidup aku. Semoga aku bisa terus nemenin kamu, di hari yang bahagia maupun hari yang nggak mudah.</p>
+      <p>Jangan lupa bahagia terus yaa. You deserve all the good things in life! 💗</p>
+      <h3>Love you always! 🧸💕</h3>
+      <button onclick="openSurprise()">Ada satu lagi nih... 🎁</button>
+      <div class="note hidden" id="surprise">
+        <div class="emoji">🧸🎁💝</div>
+        <h2>Surpriseee!</h2>
+        <p>Kalau aku boleh minta satu hal, aku mau kita punya lebih banyak cerita indah bareng-bareng.</p>
+        <p>Semoga senyum kamu selalu ada, dan semoga aku masih jadi salah satu alasan di balik senyum itu. 🥹</p>
+        <h3>You're my favorite person! 💗</h3>
+        <p>Peluk jauh buat kamu! 🤗</p>
+      </div>
+    </article>
+    <footer>Made with love, just for you ♡</footer>
+  </section>
+</main>
+<script>
+function hearts(){
+  const symbols=["💗","💕","💖","🎀","✨"];
+  for(let i=0;i<18;i++){
+    const el=document.createElement("span");
+    el.className="heart";
+    el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left=Math.random()*100+"vw";
+    el.style.fontSize=(15+Math.random()*18)+"px";
+    el.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),6500);
+  }
+}
+function openLetter(){
+  document.getElementById("opening").classList.add("hidden");
+  document.getElementById("message").classList.remove("hidden");
+  hearts();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function openSurprise(){
+  document.getElementById("surprise").classList.remove("hidden");
+  hearts();
+  document.getElementById("surprise").scrollIntoView({behavior:"smooth",block:"center"});
+}
+</script>
+</body>
+</html>
